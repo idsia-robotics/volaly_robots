@@ -221,7 +221,7 @@ class DroneActionsServer:
             # E.g. transform pose_a from 'odom' to 'World' frame
             trans = self.tf_buff.lookup_transform(pose_a.header.frame_id, pose_b.header.frame_id, rospy.Time())
         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException), e:
-            rospy.logerr_throttle_identical(10.0, e)
+            rospy.logerr_throttle(10.0, e)
             return None, None, None
 
         pose_trans = tf2_geometry_msgs.do_transform_pose(pose_b, trans)
@@ -427,7 +427,7 @@ class DroneActionsServer:
                             # Find transform from given frame to 'World' frame
                             trans = self.tf_buff.lookup_transform(self.robot_current_pose.header.frame_id, real_msg.header.frame_id, rospy.Time())
                         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException), e:
-                            rospy.logerr_throttle_identical(10.0, e)
+                            rospy.logerr_throttle(10.0, e)
                             return
 
                         # Convert pose to 'World' frame
@@ -453,7 +453,7 @@ class DroneActionsServer:
                             # Find transform from given frame to 'World' frame
                             trans = self.tf_buff.lookup_transform(self.robot_current_pose.header.frame_id, real_msg.header.frame_id, rospy.Time())
                         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException), e:
-                            rospy.logerr_throttle_identical(10.0, e)
+                            rospy.logerr_throttle(10.0, e)
                             return
 
                         # Convert pose to 'World' frame
